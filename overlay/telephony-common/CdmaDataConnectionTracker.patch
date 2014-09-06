@@ -1,0 +1,45 @@
+diff -rup ../telephony-common/smali/com/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector.smali ../telephony-common/smali/com/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector.smali
+--- ../telephony-common/smali/com/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector.smali	2014-09-05 18:51:27.000000000 +0200
++++ ../telephony-common/smali/com/android/internal/telephony/cdma/CdmaDataConnectionTracker$Injector.smali	2014-09-06 16:30:21.719525388 +0200
+@@ -35,10 +35,12 @@
+ 
+     .line 76
+     .local v1, current:Lcom/android/internal/telephony/DataConnectionAc;
+-    invoke-virtual {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->getActiveApn()Lcom/android/internal/telephony/ApnSetting;
++    invoke-virtual {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->getActiveApn()Lcom/android/internal/telephony/DataProfile;
+ 
+     move-result-object v0
+ 
++    check-cast v0, Lcom/android/internal/telephony/ApnSetting;
++
+     .line 77
+     .local v0, apn:Lcom/android/internal/telephony/ApnSetting;
+     invoke-virtual {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->getDataConnectionAsyncChannels()Ljava/util/HashMap;
+@@ -69,10 +71,12 @@
+ 
+     .line 78
+     .local v2, dcac:Lcom/android/internal/telephony/DataConnectionAc;
+-    invoke-virtual {v2}, Lcom/android/internal/telephony/DataConnectionAc;->getApnSettingSync()Lcom/android/internal/telephony/ApnSetting;
++    invoke-virtual {v2}, Lcom/android/internal/telephony/DataConnectionAc;->getApnSettingSync()Lcom/android/internal/telephony/DataProfile;
+ 
+     move-result-object v4
+ 
++    check-cast v4, Lcom/android/internal/telephony/ApnSetting;
++
+     invoke-virtual {v4, v0}, Lcom/android/internal/telephony/ApnSetting;->equals(Ljava/lang/Object;)Z
+ 
+     move-result v4
+@@ -127,10 +131,12 @@
+ 
+     const/4 v1, 0x0
+ 
+-    invoke-virtual {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->getActiveApn()Lcom/android/internal/telephony/ApnSetting;
++    invoke-virtual {p0}, Lcom/android/internal/telephony/cdma/CdmaDataConnectionTracker;->getActiveApn()Lcom/android/internal/telephony/DataProfile;
+ 
+     move-result-object v2
+ 
++    check-cast v2, Lcom/android/internal/telephony/ApnSetting;
++
+     invoke-static {v2}, Lmiui/net/FirewallManager;->encodeApnSetting(Lcom/android/internal/telephony/ApnSetting;)Ljava/lang/String;
+ 
+     move-result-object v2
