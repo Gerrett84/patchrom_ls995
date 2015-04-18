@@ -255,6 +255,8 @@
 
 .field public LGP_DATA_CONNECTIVITYSERVICE_NETSEARCH:Z
 
+.field public LGP_DATA_CONNECTIVITYSERVICE_REMOVE_SYNCHRONIZED_BLOCK:Z
+
 .field public LGP_DATA_CONNECTIVITYSERVICE_VPN_DEF_PROXY_DCM:Z
 
 .field public LGP_DATA_DAEMON_NETD_BANDWIDTH:Z
@@ -467,6 +469,8 @@
 
 .field public LGP_DATA_DEBUG_DISPLAY_INFO:Z
 
+.field public LGP_DATA_DEBUG_ENABLE_PRIVACY_LOG:Z
+
 .field public LGP_DATA_DEBUG_MPDN_INFO_UPLUS:Z
 
 .field public LGP_DATA_DEBUG_RIL_CONN_HISTORY:Z
@@ -476,6 +480,8 @@
 .field public LGP_DATA_DORMANT_FD:Z
 
 .field public LGP_DATA_DORMANT_FD_ENHANCE_DCM:Z
+
+.field public LGP_DATA_DORMANT_FD_HIDDENMENU_ENHANCED:Z
 
 .field public LGP_DATA_DORMANT_FD_LGU:Z
 
@@ -488,6 +494,8 @@
 .field public LGP_DATA_EHRPD_INIT_EFS_CONFIG_FILE_UPLUS:Z
 
 .field public LGP_DATA_EHRPD_UPDATE_PROFILE_DB:Z
+
+.field public LGP_DATA_ENV_FEATURE_MANAGEMENT:Z
 
 .field public LGP_DATA_IMS_BARRING_UPLUS:Z
 
@@ -618,6 +626,8 @@
 .field public LGP_DATA_TCPIP_DNS_RETRANSMISSION_ATT:Z
 
 .field public LGP_DATA_TCPIP_DNS_SYSPROP_ENHANCE:Z
+
+.field public LGP_DATA_TCPIP_ENHANCEMENT_OF_RESTRICTED_BACKGROUND_TRFFIC:Z
 
 .field public LGP_DATA_TCPIP_IMS_PDN_IPV6:Z
 
@@ -1160,6 +1170,23 @@
 
     .line 762
     iput-boolean v3, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_ATCMD_EXTENSION:Z
+
+    iput-boolean v3, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_CONNECTIVITYSERVICE_REMOVE_SYNCHRONIZED_BLOCK:Z
+
+    iput-boolean v3, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_ENV_FEATURE_MANAGEMENT:Z
+
+    iput-boolean v3, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_DORMANT_FD_HIDDENMENU_ENHANCED:Z
+
+    iput-boolean v3, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_TCPIP_ENHANCEMENT_OF_RESTRICTED_BACKGROUND_TRFFIC:Z
+
+    const-string/jumbo v0, "persist.service.privacy.enable"
+
+    invoke-static {v0, v3}, Landroid/os/SystemProperties;->getBoolean(Ljava/lang/String;Z)Z
+
+    move-result v0
+
+    iput-boolean v0, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_DEBUG_ENABLE_PRIVACY_LOG:Z
+
 
     .line 776
     iput-boolean v4, p0, Lcom/android/internal/telephony/LGfeature;->LGP_DATA_IMS_DELAY_CLEANUP_FOR_DEREGISTRATION:Z

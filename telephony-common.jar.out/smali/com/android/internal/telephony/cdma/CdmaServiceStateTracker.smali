@@ -7,7 +7,8 @@
 .annotation system Ldalvik/annotation/MemberClasses;
     value = {
         Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker$8;,
-        Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker$LocaleChangedIntentReceiver;
+        Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker$LocaleChangedIntentReceiver;,
+        Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker$Injector;
     }
 .end annotation
 
@@ -14056,7 +14057,7 @@
 .end method
 
 .method protected updateSpnDisplay()V
-    .locals 9
+    .locals 10
 
     .prologue
     const/4 v4, 0x1
@@ -14169,11 +14170,23 @@
     .line 997
     const-string v6, "showPlmn"
 
+    const/4 v3, 0x1
+
     invoke-virtual {v0, v6, v3}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Z)Landroid/content/Intent;
+
+    iget-object v9, p0, Lcom/android/internal/telephony/ServiceStateTracker;->ss:Landroid/telephony/ServiceState;
+
+    invoke-virtual {v9}, Landroid/telephony/ServiceState;->getOperatorAlphaLong()Ljava/lang/String;
+
+    move-result-object v9
+
+    invoke-static {p0, v9}, Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker$Injector;->getPlmn(Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker;Ljava/lang/String;)Ljava/lang/String;
+
+    move-result-object v9
 
     const-string v6, "plmn"
 
-    invoke-virtual {v0, v6, v1}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+    invoke-virtual {v0, v6, v9}, Landroid/content/Intent;->putExtra(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
 
     .line 999
     iget-object v6, p0, Lcom/android/internal/telephony/cdma/CdmaServiceStateTracker;->phone:Lcom/android/internal/telephony/cdma/CDMAPhone;
@@ -14379,6 +14392,8 @@
     goto/16 :goto_1
 
     .line 956
+    nop
+
     nop
 
     :pswitch_data_0
